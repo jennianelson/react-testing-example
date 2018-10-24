@@ -10,11 +10,14 @@
     "react-testing-library": "^5.2.1"
   },
   "scripts": {
+    "lint": "eslint src",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "format": "prettier --write \"**/*.+(js|jsx|json|css|scss|md)\""
+    "format": "npm run prettier -- --write",
+    "prettier": "prettier \"**/*.+(js|jsx|json|css|scss|md)\"",
+    "validate": "npm run lint && npm run prettier -- --write"
   },
   "eslintConfig": {
     "extends": "react-app"
