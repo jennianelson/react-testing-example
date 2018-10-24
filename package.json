@@ -19,7 +19,7 @@
     "format": "npm run prettier -- --write",
     "prettier": "prettier \"**/*.+(js|jsx|json|css|scss|md)\"",
     "validate": "npm run lint && npm run prettier -- --write && npm run flow",
-    "precommit": "npm run validate"
+    "precommit": "lint-staged && npm run flow"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -34,6 +34,7 @@
     "eslint-config-prettier": "^3.1.0",
     "flow-bin": "^0.83.0",
     "husky": "^1.1.2",
+    "lint-staged": "^7.3.0",
     "prettier": "^1.14.3"
   }
 }
