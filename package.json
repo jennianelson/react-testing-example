@@ -18,7 +18,8 @@
     "eject": "react-scripts eject",
     "format": "npm run prettier -- --write",
     "prettier": "prettier \"**/*.+(js|jsx|json|css|scss|md)\"",
-    "validate": "npm run lint && npm run prettier -- --write && npm run flow"
+    "validate": "npm run lint && npm run prettier -- --write && npm run flow",
+    "precommit": "npm run validate"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -32,6 +33,7 @@
   "devDependencies": {
     "eslint-config-prettier": "^3.1.0",
     "flow-bin": "^0.83.0",
+    "husky": "^1.1.2",
     "prettier": "^1.14.3"
   }
 }
