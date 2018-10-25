@@ -7,6 +7,6 @@
       "prettier --write",
       "git add"
     ],
-    "**/*.js": ["react scripts test --findRelatedTests"]
+    "**/*.js": ["react-scripts test --findRelatedTests"]
   }
 }
