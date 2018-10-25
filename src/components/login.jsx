@@ -8,8 +8,8 @@ const Login = ({ onSubmit }) => {
           e.preventDefault()
           const { username, password } = e.target.elements
           onSubmit({
-            username: username,
-            password: password.value,
+            username: username.value,
+            password: password,
           })
         }}
       >
