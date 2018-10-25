@@ -1,11 +1,12 @@
 {
   "linters": {
     "*.js": [
-      "eslint"
+      "eslint",
     ],
     "**/*.+(js|jsx|json|css|scss|md)": [
       "prettier --write",
       "git add"
-    ]
+    ],
+    "**/*.js": ["jest --findRelatedTests"]
   }
 }
