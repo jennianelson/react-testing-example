@@ -18,8 +18,12 @@
     "eject": "react-scripts eject",
     "format": "npm run prettier -- --write",
     "prettier": "prettier \"**/*.+(js|jsx|json|css|scss|md)\"",
-    "validate": "npm run lint && npm run prettier -- --write && npm run flow",
-    "precommit": "lint-staged && npm run flow"
+    "validate": "npm run lint && npm run prettier -- --write && npm run flow"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && npm run flow"
+    }
   },
   "eslintConfig": {
     "extends": "react-app"
