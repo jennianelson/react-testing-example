@@ -2,11 +2,11 @@
   "linters": {
     "*.js": [
       "eslint",
+      "react-scripts test --findRelatedTests"
     ],
     "**/*.+(js|jsx|json|css|scss|md)": [
       "prettier --write",
       "git add"
     ],
-    "**/*.js": ["react-scripts test --findRelatedTests"]
   }
 }
