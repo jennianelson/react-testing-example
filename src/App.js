@@ -1,8 +1,15 @@
 import React, { Component } from 'react'
 import logo from './logo.svg'
 import './App.css'
+import Login from './components/login'
 
 class App extends Component {
+  handleOnSubmit = params => {
+    const { username, password } = params
+    console.log(`password entered: ${password}`)
+    return alert(`You logged in, ${username}!`)
+  }
+
   render() {
     return (
       <div className="App">
@@ -19,6 +26,7 @@ class App extends Component {
           >
             Learn React
           </a>
+          <Login onSubmit={this.handleOnSubmit} />
         </header>
       </div>
     )
