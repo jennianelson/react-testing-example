@@ -4,9 +4,19 @@ import './App.css'
 import Login from './components/login'
 
 class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      loggedIn: false,
+    }
+  }
+
   handleOnSubmit = params => {
     const { username, password } = params
     console.log(`password entered: ${password}`)
+    this.setState({
+      loggedIn: true,
+    })
     return alert(`You logged in, ${username}!`)
   }
 
@@ -26,7 +36,11 @@ class App extends Component {
           >
             Learn React
           </a>
-          <Login onSubmit={this.handleOnSubmit} />
+          {this.state.loggedIn ? (
+            <div>You're logged in!</div>
+          ) : (
+            <Login onSubmit={this.handleOnSubmit} />
+          )}
         </header>
       </div>
     )
