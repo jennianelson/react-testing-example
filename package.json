@@ -35,7 +35,10 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "cypress": "^3.1.0",
     "eslint-config-prettier": "^3.1.0",
+    "eslint-plugin-chai-friendly": "^0.4.1",
+    "eslint-plugin-cypress": "^2.0.1",
     "flow-bin": "^0.83.0",
     "husky": "^1.1.2",
     "lint-staged": "^7.3.0",
