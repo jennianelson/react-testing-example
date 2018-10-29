@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import logo from './logo.svg'
 import './App.css'
 import Login from './components/login'
+import Register from './components/register'
+import { Switch, Route, BrowserRouter as Router } from 'react-router-dom'
 
 class App extends Component {
   constructor() {
@@ -20,27 +21,28 @@ class App extends Component {
     return alert(`You logged in, ${username}!`)
   }
 
+  registerUser = () => {}
+
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {this.state.loggedIn ? (
-            <div>You're logged in!</div>
-          ) : (
-            <Login onSubmit={this.handleOnSubmit} />
-          )}
+          <Router>
+            <Switch>
+              <Route
+                path="/register"
+                render={props => (
+                  <Register {...props} registerUser={this.registerUser} />
+                )}
+              />
+              <Route
+                path="/"
+                render={props => (
+                  <Login {...props} onSubmit={this.handleOnSubmit} />
+                )}
+              />
+            </Switch>
+          </Router>
         </header>
       </div>
     )
