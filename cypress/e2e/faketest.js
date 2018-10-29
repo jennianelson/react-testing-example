@@ -2,7 +2,7 @@ describe("user clicks submit", () => {
   it("logs in user", () => {
     const user = cy;
     user
-      .visit("/")
+      .visit("http://localhost:3000")
       .get('[type="submit"]')
       // .then(sub = {
       // debugger
