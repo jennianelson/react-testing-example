@@ -6,7 +6,7 @@ describe("registration", () => {
       email: "jennifernelson@quantalytix.com",
       password: "password"
     };
-    cy.visit("http://localhost:3000/")
+    cy.visit("/")
       .get("#register")
       .click()
       .get('[name="firstName"]')
@@ -18,6 +18,8 @@ describe("registration", () => {
       .get('[name="password"]')
       .type(user.password)
       .get("#registerSubmit")
-      .click();
+      .click()
+      .get("div.App-link")
+      .should("have.text", "Login");
   });
 });

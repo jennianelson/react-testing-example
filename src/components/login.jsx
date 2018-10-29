@@ -16,8 +16,8 @@ const Login = ({ onSubmit, loggedIn, logout }) => {
             })
           }}
         >
-          <input type="text" placeholder="email" name="email" />
-          <input type="password" placeholder="password" name="password" />
+          <input name="email" type="text" placeholder="email" />
+          <input name="password" type="password" placeholder="password" />
           <input id="loginSubmit" type="submit" />
         </form>
         <br />
@@ -32,7 +32,7 @@ const Login = ({ onSubmit, loggedIn, logout }) => {
         <Link to="/" className="App-link" onClick={logout}>
           Logout
         </Link>
-        <p>You are logged in.</p>
+        <p className="logged-in-success">You are logged in.</p>
       </div>
     )
   }

@@ -9,21 +9,24 @@ class App extends Component {
     super()
     this.state = {
       loggedIn: false,
+      registered: false,
       error: false,
     }
   }
 
   loginUser = async params => {
     const result = await this.fetchApi(params, 'user/login')
-    // debugger
+    debugger
     if (result.error) {
       this.setState({
-        error: result.error,
+        error: result.error.message,
+      })
+      alert(result.error.message)
+    } else {
+      this.setState({
+        loggedIn: true,
       })
     }
-    this.setState({
-      loggedIn: true,
-    })
   }
 
   logout = () => {
@@ -57,7 +60,16 @@ class App extends Component {
       },
       'registration',
     )
-    console.log(result)
+    console.log(`Response from /registration: ${result}`)
+    if (!result.error) {
+      this.setState({
+        registered: true,
+      })
+    } else {
+      this.setState({
+        error: result.error.message,
+      })
+    }
   }
 
   fetchApi = (params, endpoint) => {
@@ -71,11 +83,11 @@ class App extends Component {
     }).then(res => {
       if (res.ok) {
         const json = res.json()
-        alert('Success!')
+        console.log(`fetch success to ${endpoint}`)
         return json
       } else {
-        alert('Failed!')
-        return { error: 'server error' }
+        console.log(`fetch error to ${endpoint}`)
+        return { error: true, message: 'server error' }
       }
     })
   }
@@ -89,7 +101,11 @@ class App extends Component {
               <Route
                 path="/register"
                 render={props => (
-                  <Register {...props} registerUser={this.registerUser} />
+                  <Register
+                    {...props}
+                    registerUser={this.registerUser}
+                    registered={this.state.registered}
+                  />
                 )}
               />
               <Route
