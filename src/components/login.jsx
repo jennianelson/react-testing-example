@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const Login = ({ onSubmit, loggedIn, logout }) => {
+const Login = ({ onSubmit, loggedIn, logout, user }) => {
   if (!loggedIn) {
     return (
       <div>
@@ -32,7 +32,9 @@ const Login = ({ onSubmit, loggedIn, logout }) => {
         <Link to="/" className="App-link" onClick={logout}>
           Logout
         </Link>
-        <p className="logged-in-success">You are logged in.</p>
+        <div data-testid="email-display">
+          You are logged in as {user.email}.
+        </div>
       </div>
     )
   }

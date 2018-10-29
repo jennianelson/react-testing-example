@@ -11,12 +11,12 @@ class App extends Component {
       loggedIn: false,
       registered: false,
       error: false,
+      user: {},
     }
   }
 
   loginUser = async params => {
     const result = await this.fetchApi(params, 'user/login')
-    debugger
     if (result.error) {
       this.setState({
         error: result.error.message,
@@ -25,6 +25,7 @@ class App extends Component {
     } else {
       this.setState({
         loggedIn: true,
+        user: result,
       })
     }
   }
@@ -116,6 +117,7 @@ class App extends Component {
                     onSubmit={this.loginUser}
                     loggedIn={this.state.loggedIn}
                     logout={this.logout}
+                    user={this.state.user.user}
                   />
                 )}
               />

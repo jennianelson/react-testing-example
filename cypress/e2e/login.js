@@ -11,8 +11,8 @@ describe("login", () => {
       .type(user.password)
       .get("#loginSubmit")
       .click()
-      .get(".logged-in-success")
-      .should("have.text", "You are logged in.");
+      .getByTestId("email-display")
+      .should("have.text", `You are logged in as ${user.email}.`);
   });
 });
 
