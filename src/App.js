@@ -19,9 +19,8 @@ class App extends Component {
     const result = await this.fetchApi(params, 'user/login')
     if (result.error) {
       this.setState({
-        error: result.error.message,
+        error: result.error.message || 'oops! Sorry!',
       })
-      alert(result.error.message)
     } else {
       this.setState({
         loggedIn: true,
@@ -42,9 +41,10 @@ class App extends Component {
         this.setState({
           loggedIn: false,
         })
-        alert('You have logged out!')
       } else {
-        alert('oops')
+        this.setState({
+          error: 'a problem occured while trying to log out.',
+        })
       }
     })
   }
@@ -68,7 +68,7 @@ class App extends Component {
       })
     } else {
       this.setState({
-        error: result.error.message,
+        error: `error: ${result.error.message}`,
       })
     }
   }
@@ -118,6 +118,7 @@ class App extends Component {
                     loggedIn={this.state.loggedIn}
                     logout={this.logout}
                     user={this.state.user.user}
+                    error={this.state.error}
                   />
                 )}
               />
