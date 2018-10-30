@@ -1,10 +1,8 @@
+import user from "../fixtures/test_user.json";
+
 describe("login", () => {
   // use it.only to run just that test
-  it("logs in user", () => {
-    const user = {
-      email: "jennifernelson@quantalytix.com",
-      password: "password"
-    };
+  it("logs in existing user", () => {
     cy.visit("/")
       .get('[name="email"]')
       .type(user.email)
@@ -23,15 +21,11 @@ describe("login", () => {
       .should("not.contain", "does not exist");
   });
   it(`should show an error message if there's a message`, () => {
-    const user = {
-      email: "jennifernelson@quantalytix.com",
-      password: "nottherightpassword"
-    };
     cy.visit("/")
       .get('[name="email"]')
       .type(user.email)
       .get('[name="password"]')
-      .type(user.password)
+      .type("nottherightpassword")
       .get("#loginSubmit")
       .click()
       .get("[data-testid=login-response]")

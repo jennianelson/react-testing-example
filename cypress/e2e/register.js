@@ -2,8 +2,6 @@ import user from "../fixtures/test_user.json";
 
 describe("registration", () => {
   it("should register a new user", () => {
-    // const user = testUser;
-    // debugger;
     cy.visit("/")
       .get("#register")
       .click()
@@ -15,7 +13,7 @@ describe("registration", () => {
       .type(user.email)
       .get('[name="password"]')
       .type(user.password)
-      .get("#registerSubmit")
+      .get("[data-testid=submit-registration]")
       .click()
       .get("[data-testid=registration-success]")
       .should("have.text", "You are registered!");
