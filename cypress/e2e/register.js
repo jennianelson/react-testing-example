@@ -1,11 +1,9 @@
+import user from "../fixtures/test_user.json";
+
 describe("registration", () => {
   it("should register a new user", () => {
-    const user = {
-      firstName: "Jennifer",
-      lastName: "Nelson",
-      email: "jennifernelson@quantalytix.com",
-      password: "password"
-    };
+    // const user = testUser;
+    // debugger;
     cy.visit("/")
       .get("#register")
       .click()
@@ -19,7 +17,7 @@ describe("registration", () => {
       .type(user.password)
       .get("#registerSubmit")
       .click()
-      .get("div.App-link")
-      .should("have.text", "Login");
+      .get("[data-testid=registration-success]")
+      .should("have.text", "You are registered!");
   });
 });

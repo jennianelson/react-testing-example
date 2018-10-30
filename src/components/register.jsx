@@ -1,5 +1,5 @@
 import React from 'react'
-import { Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const Register = ({ registerUser, registered }) => {
   if (!registered) {
@@ -14,7 +14,12 @@ const Register = ({ registerUser, registered }) => {
       </form>
     )
   } else {
-    return <Redirect to="/" />
+    return (
+      <div>
+        <p data-testid="registration-success">You are registered!</p>
+        <Link to="/">Login</Link>
+      </div>
+    )
   }
 }
 
