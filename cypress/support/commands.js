@@ -1,3 +1,28 @@
+import user from "../fixtures/test_user.json";
+
+Cypress.Commands.add("createUser", () => {
+  cy.request({
+    url: "https://beta.quantalytix.com/api/registration",
+    headers: { "Content-type": "application/json" },
+    // credentials: "include",
+    method: "POST",
+    body: JSON.stringify(user)
+  }).then(response => response.body.user);
+});
+
+//there is probably no point to this...but it's for practice
+Cypress.Commands.add("loginUser", () => {
+  cy.request({
+    url: "https://beta.quantalytix.com/api/user/login",
+    headers: { "Content-type": "application/json" },
+    // credentials: "include",
+    method: "POST",
+    body: JSON.stringify({
+      email: user.email,
+      password: user.password
+    })
+  }).then(response => response.body.user);
+});
 // ***********************************************
 // This example commands.js shows you how to
 // create various custom commands and overwrite
