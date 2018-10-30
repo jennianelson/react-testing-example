@@ -4,6 +4,13 @@ describe("logout", () => {
       email: "jennifernelson@quantalytix.com",
       password: "password"
     };
+    // cy.request({
+    //   url: "https://beta.quantalytix.com/api/user/login",
+    //   headers: { "Content-type": "application/json" },
+    //   // credentials: "include",
+    //   method: "POST",
+    //   body: JSON.stringify(user)
+    // });
     cy.visit("/")
       .get('[name="email"]')
       .type(user.email)
