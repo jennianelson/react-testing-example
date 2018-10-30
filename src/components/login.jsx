@@ -27,7 +27,7 @@ const Login = ({ onSubmit, loggedIn, logout, user, error }) => {
           />
           <input id="loginSubmit" type="submit" />
         </form>
-        <div data-testid="login-error">{error ? error : null}</div>
+        <div data-testid="login-response">{error ? error : null}</div>
         {/* {error ? <div data-testid="login-error">{error}</div> : null} */}
         <br />
         <Link to="/register" className="App-link" id="register">
@@ -42,7 +42,9 @@ const Login = ({ onSubmit, loggedIn, logout, user, error }) => {
           Logout
         </Link>
         <div data-testid="email-display">
-          You are logged in as {user.email}.
+          <div data-testid="login-response">
+            You are logged in as {user.email}.
+          </div>
         </div>
       </div>
     )

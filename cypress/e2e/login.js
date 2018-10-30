@@ -12,16 +12,15 @@ describe("login", () => {
       .type(user.password)
       .get("#loginSubmit")
       .click()
-      .getByTestId("email-display")
-      .contains(user.email);
+      .get("[data-testid=login-response]")
+      .should("contain", user.email);
   });
-  it.skip(`should not submit a blank field`, () => {
+  it(`should not submit a blank field`, () => {
     cy.visit("/")
       .get("#loginSubmit")
-      .click();
-    // .get("[data-testid=login-error]")
-    // .should("not.have.text", "Account does not exist.");
-    // .should("not.contain", "Account");
+      .click()
+      .get("[data-testid=login-response]")
+      .should("not.contain", "does not exist");
   });
   it(`should show an error message if there's a message`, () => {
     const user = {
@@ -35,7 +34,8 @@ describe("login", () => {
       .type(user.password)
       .get("#loginSubmit")
       .click()
-      .getByTestId("login-error");
+      .get("[data-testid=login-response]")
+      .should("not.contain", user.email);
   });
 });
 
