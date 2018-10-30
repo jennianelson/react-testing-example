@@ -2,14 +2,9 @@ import user from "../fixtures/test_user.json";
 
 describe("login", () => {
   // use it.only to run just that test
-  it("logs in existing user", () => {
+  it.only("logs in existing user", () => {
     cy.visit("/")
-      .get('[name="email"]')
-      .type(user.email)
-      .get('[name="password"]')
-      .type(user.password)
-      .get("#loginSubmit")
-      .click()
+      .getLoggedIn()
       .get("[data-testid=login-response]")
       .should("contain", user.email);
   });
@@ -22,12 +17,7 @@ describe("login", () => {
   });
   it(`should show an error message if there's a message`, () => {
     cy.visit("/")
-      .get('[name="email"]')
-      .type(user.email)
-      .get('[name="password"]')
-      .type("nottherightpassword")
-      .get("#loginSubmit")
-      .click()
+      .getLoggedIn(user.email, "nottherightpassword")
       .get("[data-testid=login-response]")
       .should("not.contain", user.email);
   });

@@ -1,5 +1,21 @@
 import user from "../fixtures/test_user.json";
 
+Cypress.Commands.add("assertHome", () => {
+  cy.url().should("eq", `${Cypress.config().baseUrl}/`);
+});
+
+Cypress.Commands.add(
+  "getLoggedIn",
+  (email = user.email, password = user.password) => {
+    cy.get('[name="email"]')
+      .type(email)
+      .get('[name="password"]')
+      .type(password)
+      .get("#loginSubmit")
+      .click();
+  }
+);
+
 Cypress.Commands.add("createUser", () => {
   cy.request({
     url: "https://beta.quantalytix.com/api/registration",
@@ -10,17 +26,12 @@ Cypress.Commands.add("createUser", () => {
   }).then(response => response.body.user);
 });
 
-//there is probably no point to this...but it's for practice
-Cypress.Commands.add("loginUser", () => {
+Cypress.Commands.add("refreshAuth", () => {
   cy.request({
-    url: "https://beta.quantalytix.com/api/user/login",
+    url: "https://beta.quantalytix.com/api/user/refresh",
     headers: { "Content-type": "application/json" },
-    // credentials: "include",
-    method: "POST",
-    body: JSON.stringify({
-      email: user.email,
-      password: user.password
-    })
+    credentials: "include",
+    method: "POST"
   }).then(response => response.body.user);
 });
 // ***********************************************
