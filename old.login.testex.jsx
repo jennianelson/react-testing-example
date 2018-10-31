@@ -1,28 +1,28 @@
-import React from 'react'
+import React from "react";
 // import { generate } from 'til-client-test-utils'
-import { render } from 'react-testing-library'
-import ReactDOM from 'react-dom'
-import Login from '../components/login'
+import { render } from "react-testing-library";
+import ReactDOM from "react-dom";
+import Login from "../components/login";
 
 //test without abstraction
-test('calls onSubmit with the username and password when submitted', () => {
-  const handleSubmit = jest.fn()
-  const container = document.createElement('div')
-  ReactDOM.render(<Login onSubmit={handleSubmit} />, container)
+test("calls onSubmit with the username and password when submitted", () => {
+  const handleSubmit = jest.fn();
+  const container = document.createElement("div");
+  ReactDOM.render(<Login onSubmit={handleSubmit} />, container);
 
-  const form = container.querySelector('form')
-  const { username, password } = form.elements
-  username.value = 'smalls'
-  password.value = 'password'
+  const form = container.querySelector("form");
+  const { username, password } = form.elements;
+  username.value = "smalls";
+  password.value = "password";
 
-  form.dispatchEvent(new window.Event('submit'))
+  form.dispatchEvent(new window.Event("submit"));
 
-  expect(handleSubmit).toHaveBeenCalledTimes(1)
+  expect(handleSubmit).toHaveBeenCalledTimes(1);
   expect(handleSubmit).toHaveBeenCalledWith({
     username: username.value,
-    password: password.value,
-  })
-})
+    password: password.value
+  });
+});
 // test with abstraction -- what is this generate fn()?
 // test('calls onSubmit witht he username and password when submitted', () => {
 //   // ARRANGE
@@ -44,7 +44,7 @@ test('calls onSubmit with the username and password when submitted', () => {
 //   expect(handleSubmit).toHaveBeenCalledWith(fakeUser)
 // })
 
-test('snapshot', () => {
-  const { container } = render(<Login onSubmit={() => {}} />)
-  expect(container.firstChild).toMatchSnapshot()
-})
+test("snapshot", () => {
+  const { container } = render(<Login onSubmit={() => {}} />);
+  expect(container.firstChild).toMatchSnapshot();
+});
